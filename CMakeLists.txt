@@ -2914,7 +2914,20 @@ if(CLIENT)
     src/generated/client_data7.h
     # tidy-alphabetical-end
   )
-  set(CLIENT_SRC ${ENGINE_CLIENT} ${PLATFORM_CLIENT} ${GAME_CLIENT} ${GAME_EDITOR} ${GAME_MAP} ${GAME_GENERATED_CLIENT})
+  set(IMGUI_SRC
+  src/imgui/backends/imgui_impl_opengl3.cpp
+  src/imgui/backends/imgui_impl_opengl3.h
+  src/imgui/backends/imgui_impl_sdl2.cpp
+  src/imgui/backends/imgui_impl_sdl2.h
+  src/imgui/imgui.cpp
+  src/imgui/imgui.h
+  src/imgui/imgui_draw.cpp
+  src/imgui/imgui_internal.h
+  src/imgui/imgui_tables.cpp
+  src/imgui/imgui_widgets.cpp
+)
+
+set(CLIENT_SRC ${ENGINE_CLIENT} ${PLATFORM_CLIENT} ${GAME_CLIENT} ${GAME_EDITOR} ${GAME_MAP} ${GAME_GENERATED_CLIENT} ${IMGUI_SRC})
 
   set(DEPS_CLIENT ${DEPS} ${GLEW_DEP})
 
@@ -3057,6 +3070,7 @@ if(CLIENT)
     ${OPUS_INCLUDE_DIRS}
     ${PNG_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/src/imgui
     ${WAVPACK_INCLUDE_DIRS}
     # tidy-alphabetical-end
 
