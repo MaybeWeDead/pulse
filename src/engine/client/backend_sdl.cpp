@@ -69,7 +69,30 @@ void CCommandProcessorFragment_SDL::Cmd_Shutdown(const SCommand_Shutdown *pComma
 void CCommandProcessorFragment_SDL::Cmd_Swap(const CCommandBuffer::SCommand_Swap *pCommand)
 {
 	if(m_GLContext)
+	{
+		if(!m_ImGuiInitialized)
+		{
+			IMGUI_CHECKVERSION();
+			ImGui::CreateContext();
+			ImGui::GetIO().IniFilename = nullptr;
+			ImGui_ImplSDL2_InitForOpenGL(m_pWindow, m_GLContext);
+			ImGui_ImplOpenGL3_Init();
+			m_ImGuiInitialized = true;
+		}
+
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplSDL2_NewFrame();
+		ImGui::NewFrame();
+
+		ImGui::Begin("Pulse ClickGUI (test)");
+		ImGui::Text("If you can see this, ImGui works!");
+		ImGui::End();
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 		SDL_GL_SwapWindow(m_pWindow);
+	}
 }
 
 void CCommandProcessorFragment_SDL::Cmd_VSync(const CCommandBuffer::SCommand_VSync *pCommand)

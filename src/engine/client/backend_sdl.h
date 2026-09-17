@@ -7,6 +7,10 @@
 #include <engine/client/graphics_threaded.h>
 #include <engine/graphics.h>
 
+#include <imgui/imgui.h>
+#include <imgui/backends/imgui_impl_sdl2.h>
+#include <imgui/backends/imgui_impl_opengl3.h>
+
 #ifndef BACKEND_NO_SDL
 #include <SDL_video.h>
 #else
@@ -142,6 +146,7 @@ class CCommandProcessorFragment_SDL
 	// SDL stuff
 	SDL_Window *m_pWindow = nullptr;
 	SDL_GLContext m_GLContext = nullptr;
+        bool m_ImGuiInitialized = false;
 
 public:
 	enum

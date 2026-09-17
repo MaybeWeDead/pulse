@@ -16,6 +16,8 @@
 #include <engine/shared/config.h>
 
 #include <SDL.h>
+#include <imgui/imgui.h>
+#include <imgui/backends/imgui_impl_sdl2.h>
 
 #include <algorithm>
 
@@ -742,8 +744,14 @@ int CInput::Update()
 	}
 #endif
 
-	while(SDL_PollEvent(&Event))
+while(SDL_PollEvent(&Event))
 	{
+		ImGui_ImplSDL2_ProcessEvent(&Event);
+		if(ImGui::GetCurrentContext() && (ImGui::GetIO().WantCaptureMouse || ImGui::GetIO().WantCaptureKeyboard))
+		{
+			continue;
+		}
+
 		switch(Event.type)
 		{
 		case SDL_SYSWMEVENT:
