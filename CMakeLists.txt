@@ -2663,6 +2663,8 @@ if(CLIENT)
     components/countryflags.h
     components/damageind.cpp
     components/damageind.h
+    components/clickgui.cpp
+    components/clickgui.h
     components/debughud.cpp
     components/debughud.h
     components/effects.cpp

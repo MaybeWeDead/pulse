@@ -44,6 +44,7 @@
 #include "components/flow.h"
 #include "components/freezebars.h"
 #include "components/ghost.h"
+#include "components/clickgui.h"
 #include "components/hud.h"
 #include "components/important_alert.h"
 #include "components/infomessages.h"
@@ -167,6 +168,7 @@ public:
 	CCountryFlags m_CountryFlags;
 	CFlow m_Flow;
 	CHud m_Hud;
+    CClickGui m_ClickGui;
 	CImportantAlert m_ImportantAlert;
 	CDebugHud m_DebugHud;
 	CControls m_Controls;

@@ -11,6 +11,7 @@
 #include <base/thread.h>
 
 #include <engine/shared/config.h>
+#include <game/client/components/clickgui.h>
 #include <engine/shared/localization.h>
 
 #if defined(CONF_PLATFORM_IOS)
@@ -84,9 +85,12 @@ void CCommandProcessorFragment_SDL::Cmd_Swap(const CCommandBuffer::SCommand_Swap
 		ImGui_ImplSDL2_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::Begin("Pulse ClickGUI (test)");
-		ImGui::Text("If you can see this, ImGui works!");
-		ImGui::End();
+		if(CClickGui::ms_IsOpen)
+		{
+			ImGui::Begin("Pulse ClickGUI (test)");
+			ImGui::Text("If you can see this, ImGui works!");
+			ImGui::End();
+		}
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
